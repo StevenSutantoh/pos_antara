@@ -2,14 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barang extends Model
+class barang extends Model
 {
-    use HasFactory;
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'barangs';
 
-    protected $table = 'barang';
-    protected $primaryKey = 'id_barang';
-    protected $fillable = ['id_kategori', 'id_stok', 'nama_barang', 'merk', 'kuantitas', 'harga_jual', 'stok', 'size'];
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['kode_barang', 'kode_kategori', 'nama_barang', 'merk', 'kuantitas', 'harga_beli', 'harga_jual', 'stok'];
+
+    
 }
