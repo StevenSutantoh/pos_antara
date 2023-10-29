@@ -9,8 +9,9 @@ use App\Http\Controllers\{
     CustomerController,
     PengeluaranController,
     SupplierController,
+    RoleController,
 };
-use App\Models\Pengeluaran;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
     Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer');
     
+
     Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran');
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/tambah_barang',[BarangController::class,'view_create'])->name('view_tambah_barang');
@@ -53,9 +55,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
     
     Route::get('settings',[UserController::class,'index'])->name('settings');
     Route::get('create_user',[UserController::class,'create'])->name('create_user');
-    Route::get('show_user',[UserController::class,'show'])->name('show_user');
+    Route::get('show_user/{id}',[UserController::class,'show'])->name('show_user');
     Route::get('edit_user/{id}',[UserController::class,'edit'])->name('edit_user');
-    Route::get('destroy_user',[UserController::class,'destroy'])->name('destroy_user');
+    Route::delete('destroy_user/{id}',[UserController::class,'destroy'])->name('destroy_user');
 
     Route::patch('update_user/{id}',[UserController::class,'update'])->name('update_user');
     // Route::get();
@@ -65,4 +67,6 @@ Route::group(['prefix' => 'admin','middleware' => ['auth'], 'as' => 'admin.'], f
 
 
 Route::resource('/kategori', KategoriController::class);
-
+Route::resource('/supplier', SupplierController::class);
+Route::resource('/customer', CustomerController::class);
+Route::resource('/pengeluaran', PengeluaranController::class);
