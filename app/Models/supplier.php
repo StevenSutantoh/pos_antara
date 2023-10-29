@@ -2,30 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class supplier extends Model
+class Supplier extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'suppliers';
+    use HasFactory;
 
-    /**
-    * The database primary key value.
-    *
-    * @var string
-    */
-    protected $primaryKey = 'id';
-
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['kode_supplier', 'nama_supplier', 'alamat', 'kota', 'no_telepon'];
-
-    
+    protected $table = 'supplier';
+    protected $primaryKey = 'id_supplier';
+    protected $guarded = [];
+    protected $fillable = ['nama', 'alamat', 'telepon'];
 }

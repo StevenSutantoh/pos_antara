@@ -13,16 +13,38 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->increments('id_barang');
-            $table->foreign('id_kategori');
-            $table->foreign('id_stok');
+            $table->integer('id_kategori');
+            $table->integer('id_stok');
             $table->string('nama_barang')->unique();
             $table->string('merk')->nullable();
             $table->integer('kuantitas');
             $table->integer('harga_jual');
             $table->integer('stok');
             $table->timestamps();
+            $table->foreign('id_kategori')
+                  ->references('kategori')
+                  ->on('id_kategori')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
     }
+
+    // /**
+    //  * Run the migrations.
+    //  * 
+    //  * @return void
+    //  */
+    // public function up()
+    // {
+    //     Schema::table('produk', function (Blueprint $table) {
+    //         $table->unsignedInteger('id_kategori')->change();
+    //         $table->foreign('id_kategori')
+    //               ->references('id_kategori')
+    //               ->on('kategori')
+    //               ->onUpdate('restrict')
+    //               ->onDelete('restrict');
+    //     });
+    // }
     
 
     /**
@@ -32,6 +54,10 @@ return new class extends Migration
      */
     public function down()
     {
+        // Schema::table('barang', function (Blueprint $table) {
+        //     $table->integer('id_kategori')->change();
+        //     $table->dropForeign('barang_id_kategori_foreign');
+        // });
         Schema::dropIfExists('barang');
     }
 };
